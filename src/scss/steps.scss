@@ -1,0 +1,133 @@
+
+.steps_window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* .steps {
+    display: flex;
+    flex-direction: row;
+
+    .step {
+        margin: 0 auto;
+    }
+    
+} */
+
+
+// https://fribly.com/2015/01/01/scalable-responsive-progress-bar/
+
+$complete: #2ECC71;
+$active: #3498DB;
+$mute: #DFE3E4;
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  color: darken($mute, 33%);
+
+  > li {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    font-size: 0.8em;
+    
+    &:before {
+      content: attr(data-step);
+      display: block;
+      margin: 0 auto;
+      background: $mute;
+      width: 3em;
+      height: 3em;
+      text-align: center; //IE8 doesn't inherit this style
+      margin-bottom: 0.25em;
+      line-height: 3em;
+      border-radius: 100%;
+      position: relative;
+      z-index: 1000;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      background: $mute;
+      width: 100%;
+      height: 0.5em;
+      top: 1.25em;
+      left: 50%;
+      margin-left: 1.5em\9;
+      z-index: -1;
+    }
+    &:last-child:after {
+      display: none;
+    }
+    &.is-complete {
+      color: $complete;
+      
+      &:before,
+      &:after {
+        color: #FFF;
+        background: $complete;
+      }
+    }
+    &.is-active {
+      color: $active;
+      
+      &:before {
+        color: #FFF;
+        background: $active;
+      }
+    }
+  }
+}
+  /**
+   * Needed for IE8
+   */
+  ul__last:after {
+    display: none!important;
+  }
+
+  /**
+   * Size Extensions
+   */
+  ul--medium {
+    font-size: 1.5em;
+  }
+  ul--large {
+    font-size: 2em;
+  }
+
+/**
+ * Some Generic Stylings
+ */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+h1 {
+  margin-bottom: 1.5em;
+}
+ul {
+  margin-bottom: 3em;
+}
+a {
+  color: $active;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+body {
+  text-align: center;
+  color: #444;
+}

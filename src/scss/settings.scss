@@ -1,0 +1,51 @@
+
+.config {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-content: center;
+
+    .back {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        cursor: pointer;
+    }
+
+    .close {
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+    }
+
+    .horizontalslider-box.hs-box {
+        scroll-snap-type: x mandatory;
+        overflow: auto;
+        display: flex;
+        
+        .hs-item {
+            flex-basis: 100%;
+            width: 100%;
+            min-width: 100%;
+            scroll-snap-align: start;
+            padding: 10px;
+            margin: 0 5px;
+            border: 1px solid #efefef;
+            box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.25);
+
+            .title {
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+    }
+}
