@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <steps :active-steps="!show_settings"></steps>
+        <steps></steps>
 
         <settings v-show="show_settings" @showSettings="onShowSettings"></settings>
 

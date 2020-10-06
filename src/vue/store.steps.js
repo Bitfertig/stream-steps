@@ -1,10 +1,11 @@
 
-const default_step = { label:'', active:false };
+const default_step = { label:'' };
 
 const initialState = {
-    amount: 1,
+    amount: 3,
     settings_button_invisibility: false,
-    steps: [ {label:'', active:false} ],
+    active: 1,
+    steps: [ {...default_step}, {...default_step}, {...default_step} ],
 };
 
 export const steps = {
@@ -31,6 +32,9 @@ export const steps = {
         setSteps({dispatch, commit}, steps) {
             commit('steps', steps);
         },
+        setActive({dispatch, commit}, active) {
+            commit('active', active);
+        },
     },
     mutations: {
         amount(state, amount) {
@@ -41,6 +45,9 @@ export const steps = {
         },
         steps(state, steps) {
             state.steps = steps;
+        },
+        active(state, active) {
+            state.active = active;
         },
     }
 }

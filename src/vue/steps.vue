@@ -2,8 +2,13 @@
     <div class="steps_window">
 
         <ul class="steps">
-            <li class="step is-complete is-active" v-for="(step, index) in steps" :key="index" :data-step="index + 1">
-                <div :class="{'select-button':1, 'active':step.active}">
+            <li v-for="(step, index) in steps"
+                :key="index"
+                :data-step="index + 1"
+                :class="{step:1, 'is-complete':(index+1<active), 'is-active':(index+1==active)}"
+                v-on:click="active = index + 1"
+            >
+                <div>
                     {{ step.label }}
                 </div>
             </li>
@@ -15,7 +20,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 export default {
-    props: ['activeSteps'],
+    props: [ ],
     components: {
         
     },
@@ -28,18 +33,6 @@ export default {
         console.log('steps.vue mounted.');
         
         var that = this;
-
-        /* document.addEventListener('keypress', function(e) {
-            if ( that.activeSteps ) {
-                for (let i in that.steps) {
-                    let step = that.steps[i];
-                    if ( e.key == step.key ) {
-                        console.log('"'+e.key+'" bzzzt!');
-                        that.steps[i].active = true;
-                    }
-                }
-            }
-        }); */
 
     },
     computed: {
@@ -67,12 +60,21 @@ export default {
                 this.setSteps(newValue);
             }
         },
+        active: {
+            get: function() {
+                return this.$store.state.steps.active;
+            },
+            set: function(newValue) {
+                this.setActive(newValue);
+            }
+        },
     },
     methods: {
         ...mapActions({
             setAmount: 'steps/setAmount',
             setSettingsButtonInvisibility: 'steps/setSettingsButtonInvisibility',
             setSteps: 'steps/setSteps',
+            setActive: 'steps/setActive',
         }),
     },
 }
